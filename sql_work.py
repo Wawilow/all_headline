@@ -1,18 +1,35 @@
 import sqlite3
 
 
-def sql(sag, data, somphing):
-    all_users = []
-    con = sqlite3.connect("users.db")
+def sql(headline, discription, url, somphing):
+    all_base = []
+    try:
+        con = sqlite3.connect("all_headlins.db")
+    except:
+        return 'connect to base error'
     cur = con.cursor()
-    result = cur.execute("""SELECT * FROM lenta_ru""").fetchall()
-    for elem in result:
-        all_users.append(elem)
-    # print(all_users)
-    param = (str(sag[0]), str(data[0]), str(somphing))
-    con.execute("""insert into lenta_ru values (?, ?, ?)""", param)
+    #подключаем бузу данных, если не подключилась то возвращает ошибку
+    #задаем курсор который будет бежать по базе данных
+    try:
+        result = cur.execute("""SELECT * FROM base_prn""").fetchall()
+        all_users = [elem for elem in result]
+        print(all_users)
+    except:
+        return 'select from base error'
+    #бежим по базе данных
+    #если крашнулось выдает ошибку
+    try:
+        param = (headline, discription, url, somphing)
+        con.execute("""insert into base_prn values (?, ?, ?, ?)""", param)
+    except:
+        return 'insert to base error'
+    # добовляем в базу данных заданные переменные
+    # если крашнулось возращаем ошибку
     con.commit()
     con.close()
+    return all_users
 
 
-#sql('пример заголовка', '0000 0 0', 'url')
+if __name__ == '__main__':
+    pass
+    #sql('пример заголовка', 'пример описания', 'ссылка на видео', 'что то еще')
