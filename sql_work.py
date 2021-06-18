@@ -33,3 +33,4 @@ def sql(headline, discription, url, somphing):
 if __name__ == '__main__':
     pass
     #sql('пример заголовка', 'пример описания', 'ссылка на видео', 'что то еще')
+    # what, what?
