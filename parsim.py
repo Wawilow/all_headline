@@ -41,8 +41,8 @@ def test_past(url, headers):
 def main():
     global i
     headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_4) AppleWebKit/537.36 '
-                      '(KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
+        'User-Agent': 'Mozilla/4.9 (Macintosh; Intel Mac OS X 11_3) AppleWebKit/537.36 '
+                      '(KHTML, like Gecko) Chrome/92.0.4573.104 Safari/537.37',
         'Referer': 'http://porno365.lol/'
     }
     work = pats(f'http://porno365.lol/movie/{i}', headers)
