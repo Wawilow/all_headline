@@ -2,7 +2,6 @@ import sqlite3
 
 
 def sql(headline, discription, url, somphing):
-    all_base = []
     try:
         con = sqlite3.connect("all_headlins.db")
     except:
@@ -13,13 +12,12 @@ def sql(headline, discription, url, somphing):
     try:
         result = cur.execute("""SELECT * FROM base_prn""").fetchall()
         all_users = [elem for elem in result]
-        print(all_users)
     except:
         return 'select from base error'
     #бежим по базе данных
     #если крашнулось выдает ошибку
     try:
-        param = (headline, discription, url, somphing)
+        param = (str(headline), str(discription), str(url), str(somphing))
         con.execute("""insert into base_prn values (?, ?, ?, ?)""", param)
     except:
         return 'insert to base error'
@@ -27,7 +25,7 @@ def sql(headline, discription, url, somphing):
     # если крашнулось возращаем ошибку
     con.commit()
     con.close()
-    return all_users
+    return [all_users, True]
 
 
 if __name__ == '__main__':
