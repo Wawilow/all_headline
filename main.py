@@ -1,6 +1,6 @@
 import datetime
 from datetime import date
-from  parsim import pats2
+from  parsim import pats
 
 
 def main(jar, month, day):
