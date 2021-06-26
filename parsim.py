@@ -3,7 +3,7 @@ from lxml import html
 from  sql_work import sql
 
 
-def pats(url, headers):
+def pats(url, headers, i):
     # headline, discription, url, somphing
     # headline
     # /html/body/div[6]/div[1]/div[1]/div[1]/div[2]/h1/text()
@@ -18,17 +18,17 @@ def pats(url, headers):
         headlines = tree.xpath(f'//*[@id="content"]/div[1]/div[1]/div[1]/div[2]/h1/text()')
         discription = tree.xpath(f'//*[@id="content"]/div[1]/div[1]/div[1]/div[3]/div[9]/text()')
         if headlines == []:
-            return False
+            return [False, 'headline have nothing']
         if discription == []:
-            return False
+            return [False, 'discription have nothing']
     except:
-        return False
+        return [False, 'Connect to site error']
     sql_add = sql(headlines, discription, url, i)
     if sql_add[-1] == True:
         return (f"work with {url} is good, and we hav that {headlines}"
               f" and {discription}")
     else:
-        return f"{sql_add}"
+        return [False, f"{sql_add}"]
 
 
 def test_past(url, headers):
@@ -38,27 +38,11 @@ def test_past(url, headers):
     discription = tree.xpath(f'//*[@id="content"]/div[1]/div[1]/div[1]/div[3]/div[9]/text()')
 
 
-def main():
-    global i
+if __name__ == '__main__':
+    i = 1
+    url = f'http://porno365.lol/movie/{i}'
     headers = {
         'User-Agent': 'Mozilla/4.9 (Macintosh; Intel Mac OS X 11_3) AppleWebKit/537.36 '
                       '(KHTML, like Gecko) Chrome/92.0.4573.104 Safari/537.37',
-        'Referer': 'http://porno365.lol/'
-    }
-    work = pats(f'http://porno365.lol/movie/{i}', headers)
-    print(work)
-    if work == False:
-        return False
-    #test_past(f'http://porno365.lol/movie/2', headers)
-    i += 1
-
-
-if __name__ == '__main__':
-    i = 1
-    kafizient = True
-    while kafizient:
-        mai = main()
-        if mai == False:
-            kafizient = False
-
-
+        'Referer': 'http://porno365.lol/'}
+    print(pats(url, headers, i))
