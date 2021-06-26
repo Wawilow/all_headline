@@ -43,7 +43,7 @@ if __name__ == '__main__':
     # 298
     TR = True
     while TR:
-        if how_many_fals <= 10:
+        if how_many_fals >= 3:
             print(f'сколько было ошибок {how_many_fals}')
             how_many_fals = 0
             plus += 1
@@ -63,5 +63,5 @@ if __name__ == '__main__':
         except:
             how_many_fals += 1
             #print(f'time to sleep')
-            time.sleep(120)
+            time.sleep(30)
 
