@@ -45,6 +45,8 @@ if __name__ == '__main__':
     while TR:
         if how_many_fals >= 3:
             print(f'сколько было ошибок {how_many_fals}')
+            # if we have 3 error, we connect to other url
+            # and becaus we
             how_many_fals = 0
             plus += 1
             print(f'сколько плюсуем {plus}')
@@ -63,5 +65,8 @@ if __name__ == '__main__':
         except:
             how_many_fals += 1
             #print(f'time to sleep')
-            time.sleep(30)
+            time.sleep(0.1)
+            if plus >= 50:
+                plus = 0
+                time.sleep(720)
 
