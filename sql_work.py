@@ -7,15 +7,15 @@ def sql(headline, discription, url, somphing):
     except:
         return 'connect to base error'
     cur = con.cursor()
-    #подключаем бузу данных, если не подключилась то возвращает ошибку
-    #задаем курсор который будет бежать по базе данных
+    # подключаем бузу данных, если не подключилась то возвращает ошибку
+    # задаем курсор который будет бежать по базе данных
     try:
         result = cur.execute("""SELECT * FROM base_prn""").fetchall()
         all_users = [elem for elem in result]
     except:
         return 'select from base error'
-    #бежим по базе данных
-    #если крашнулось выдает ошибку
+    # бежим по базе данных
+    # если крашнулось выдает ошибку
     try:
         param = (str(headline), str(discription), str(url), str(somphing))
         con.execute("""insert into base_prn values (?, ?, ?, ?)""", param)
@@ -34,8 +34,8 @@ def last_in_base():
     except:
         return 'connect to base error'
     cur = con.cursor()
-    #подключаем бузу данных, если не подключилась то возвращает ошибку
-    #задаем курсор который будет бежать по базе данных
+    # подключаем бузу данных, если не подключилась то возвращает ошибку
+    # задаем курсор который будет бежать по базе данных
     try:
         result = cur.execute("""SELECT something_else FROM base_prn""").fetchall()
         all_users = [elem[0] for elem in result]
@@ -54,5 +54,5 @@ def last_in_base():
 if __name__ == '__main__':
     #pass
     print(last_in_base())
-    #sql('пример заголовка', 'пример описания', 'ссылка на видео', 'что то еще')
+    # sql('пример заголовка', 'пример описания', 'ссылка на видео', 'что то еще')
     # what, what?
