@@ -9,6 +9,6 @@ headers = {
                   '(KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
     'Referer': 'http://porno365.lol/'
 }
-url = "http://porno365.lol"
+url = ""
 response = requests.get(url, headers=headers)
 print(response.text)
